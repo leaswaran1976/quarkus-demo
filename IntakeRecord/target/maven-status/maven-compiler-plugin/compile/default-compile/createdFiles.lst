@@ -1,3 +1,4 @@
 META-INF/panache-archive.marker
-org/acndemo/intake/Intake.class
-org/acndemo/intake/models/Claims.class
+org/acndemo/intake/models/IntakeRecordRepository.class
+org/acndemo/intake/IntakeService.class
+org/acndemo/intake/models/IntakeRecord.class
