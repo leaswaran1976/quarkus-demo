@@ -1,0 +1,56 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/leaswaran1976/quarkus-demo.git
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: "2022-01-18T15:41:21Z"
+  generation: 2
+  labels:
+    app: intakerecord
+    app.kubernetes.io/component: intakerecord
+    app.kubernetes.io/instance: intakerecord
+    app.kubernetes.io/name: intakerecord
+    app.kubernetes.io/part-of: acn-demo
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: openjdk-11-el7
+  name: intakerecord
+  namespace: acn-demo-quarkus
+  resourceVersion: "20904556"
+  uid: 567bdaa7-d95e-4cb1-9440-ebacfe9f8579
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: intakerecord:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: /IntakeRecord
+    git:
+      uri: https://github.com/leaswaran1976/quarkus-demo.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: java:openjdk-11-el7
+        namespace: openshift
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - generic:
+      secretReference:
+        name: intakerecord-generic-webhook-secret
+    type: Generic
+  - github:
+      secretReference:
+        name: intakerecord-github-webhook-secret
+    type: GitHub
+  - imageChange: {}
+    type: ImageChange
+  - type: ConfigChange
